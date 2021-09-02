@@ -1,0 +1,59 @@
+﻿
+
+.searchRow {
+    display: block;
+    text-align: center;
+}
+
+.tblDiv {
+    height: 10rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+}
+
+    .tblDiv::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+/*#tblGenericName, #tblTradeName {
+            display: none;
+        }*/
+.tblLiveSearch tr:hover {
+    cursor: pointer;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+select.form-control {
+    padding: 0;
+}
+
+.inputRow input, .inputRow select {
+    margin-right: 3px;
+}
+
+.labelRow label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#tblDrugOrder thead tr th {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#tblDrugOrder tbody tr td {
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+

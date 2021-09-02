@@ -1,0 +1,257 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+.mdtp__wrapper {
+    top: 7rem;
+    bottom: auto;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    /*margin-bottom: 60px;*/
+    font-size: 0.8rem;
+}
+
+.form-control {
+    font-size: 0.8rem;
+}
+
+.btn {
+    font-size: 0.8rem;
+}
+
+    .btn:hover {
+        cursor: pointer;
+    }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+label {
+    font-weight: bold;
+}
+
+.loadingBgImg {
+    display: none;
+    position: absolute;
+    z-index: 1051;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background: transparent /*rgba( 255, 255, 255, .8 )*/ /*url('../images/LoadingGifts/giphy.gif') 50% 50% no-repeat*/;
+}
+
+.loadingDiv {
+    display: none;
+    z-index: 1051;
+    border: 10px solid silver;
+    border-top: 10px solid #337AB7;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 700ms linear infinite;
+    top: 45%;
+    left: 58%;
+    position: fixed;
+}
+
+body.enlarged .loadingDiv {
+    left: 51%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+/* When the body has the loading class, we turn
+        the scrollbar off with overflow:hidden */
+body .content-page .content.loading .loadingDiv, body .content-page .content.loading .loadingBgImg {
+    overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+        modal element will be visible */
+body .content-page .content.loading .loadingDiv, body .content-page .content.loading .loadingBgImg {
+    display: block;
+}
+
+/* When the body has the loadingPage class, we turn
+        the scrollbar off with overflow:hidden */
+body .content-page .content.loadingPage .loadingDiv, body .content-page .content.loadingPage .loadingBgImg {
+    overflow: hidden;
+}
+
+/* Anytime the body has the loadingPage class, our
+        modal element will be visible */
+body .content-page .content.loadingPage .loadingDiv, body .content-page .content.loadingPage .loadingBgImg {
+    display: block;
+}
+
+/*Pagination Tag Helper Disable*/
+.dis_able {
+    pointer-events: none;
+    color: lightgray;
+}
+
+.txtItemRowSize {
+    width: 50px;
+    padding: 7px 5px;
+    /*margin-right: 10px;*/
+    float: right;
+    /*border: none;*/
+    text-align: center;
+    outline: none;
+    box-shadow: none;
+}
+
+    .txtItemRowSize:focus {
+        outline: none;
+    }
+
+    .txtItemRowSize::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+
+.footerBtnRow {
+    margin-bottom: 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: seashell;
+    padding: 5px;
+    padding-left: 20px;
+    /*box-shadow: 20px 20px 30px darkblue;*/
+}
+
+/*.footerBtnFormGroup {
+    margin-bottom: 0px;
+    width: 100%;
+    position: relative;
+    bottom: 5px;
+    padding-top: 10px;
+}*/
+
+.regPageButtonWidth {
+    width: 150px;
+}
+
+.table > tbody.textMiddle > tr > td, .table > tbody.textMiddle > tr > th {
+    vertical-align: middle;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 30px !important;
+    padding: 0px 10px;
+}
+
+.thActionMinwidth {
+    min-width: 90px;
+    text-align: center;
+}
+
+.btnUpdateSubmitToggle {
+    display: none;
+}
+
+    .separateScrollFullHeight {
+        position: relative;
+        left: 0;
+        height: 81.5vh;
+        overflow-y: auto;
+    }
+
+    .separateScrollFullHeight::-webkit-scrollbar {
+        width: 12px; /* width of the entire scrollbar */
+    }
+
+        .separateScrollFullHeight::-webkit-scrollbar-track {
+            background: #f1f1f1; /* color of the tracking area */
+        }
+
+        .separateScrollFullHeight::-webkit-scrollbar-thumb {
+            background-color: #313a46; /* color of the scroll thumb */
+            border-radius: 20px; /* roundness of the scroll thumb */
+            border: 3px solid #f1f1f1; /* creates padding around scroll thumb */
+        }
+
+.separateScrollFullHeight {
+    scrollbar-width: thin; /* "auto" or "thin"  */
+    scrollbar-color: #313a46 #f1f1f1; /* scroll thumb & track */
+}
+
+.btn-success, .btn-secondary{
+    min-width: 100px;
+}

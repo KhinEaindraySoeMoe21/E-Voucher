@@ -1,0 +1,39 @@
+﻿@model Test1.Models.ViewModels.EHomeViewModel
+@{
+    ViewData["Title"] = "Evouchers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var actionName = Model.BtnActionName.ToLower().Trim();
+
+}
+
+<div class="row">
+    <div class="bg-light">
+        <div class="card-box row">
+
+            @for (int i = 0; i < Model.EvoucherList.Count(); i++)
+            {
+                var item = Model.EvoucherList;
+                <input type="hidden" asp-for="Evoucher.EvoucherId" />
+                    <div class="col-lg-3 col-md-6" style="border:1px dashed gray;border-radius:5px">
+                        <a asp-area="EHome" asp-controller="EHome" asp-action="EHomePurchase" asp-route-EvoucherId="@item[i].EvoucherId">
+                            <div class="card-box widget-box-two widget-two-custom">
+                                <h2 class="font-600"><span style="color:gray">@item[i].EvoucherTitle</span></h2>
+                                <div class="wigdet-two-content">
+                                    <p class="m-0 text-uppercase font-bold font-secondary text-overflow " style="color:gray"  title="Statistics">@item[i].Amount</p>
+                                    <h2 class="font-100" ><span style="color:gray">@item[i].ExpireDate</span></h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    @*<td class="text-center">
+                        <a class="btn btn-outline-primary" asp-route-btnActionName="Edit" asp-action="EvoucherAIO" asp-route-EvoucherId="@item[i].EvoucherId">Edit</a>
+                        <a class="btn btn-outline-danger" asp-route-btnActionName="Delete" asp-action="EvoucherAIO" asp-route-EvoucherId="@item[i].EvoucherId">Delete</a>
+                    </td>*@
+            }
+        </div>
+    </div>
+</div>
+

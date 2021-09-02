@@ -1,0 +1,95 @@
+﻿@model Test1.Models.ViewModels.EHomeViewModel
+@{
+    ViewData["Title"] = "PurchaseHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var actionName = Model.BtnActionName.ToLower().Trim();
+
+}
+
+<div class="row">
+    <div class="col-12" style="display:none">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-inline m-b-20">
+                        <div class="row" style=" width: 48rem;">
+                            <div class="col-md-6 text-xs-center" style="display:none;">
+                                <div class="form-group">
+                                    <label class="control-label m-r-5">Status</label>
+                                    <select id="demo-foo-filter-status" class="form-control input-sm">
+                                        <option value="">Show all</option>
+                                        <option value="active">Active</option>
+                                        <option value="disabled">Disabled</option>
+                                        <option value="suspended">Suspended</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center ">
+                                <div class="form-group ">
+                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control input-sm col-10" autocomplete="on">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="demo-foo-filtering" class="table table-striped table-bordered toggle-circle m-b-0" data-page-size="7">
+                        <thead>
+                            <tr>
+                                <th>
+                                    No.
+                                </th>
+
+                                <th>
+                                   Buyer Name
+                                </th>
+                                <th>
+                                   Phone No
+                                </th>
+                                <th>
+                                    Promocode
+                                </th>
+                                <th class="text-center"><b>Action</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.PurchaseByUserList.Select((value, i) => new { value, i }))
+                            {
+                                string pbuJson = Newtonsoft.Json.JsonConvert.SerializeObject(item.value);
+                                <tr>
+                                    <td>
+                                        @(item.i + 1)
+                                    </td>
+                                    <td>
+                                        @item.value.Buyer.Name
+                                    </td>
+                                    <td>
+                                        @item.value.Buyer.PhoneNo   
+                                    </td>
+                                    <td id="valueshowCurrencyRate">
+                                        Not Used
+                                    </td>
+                                    <td class="text-center">
+                                       <button class="btn btn-outline-primary" onclick="TableRowEditClick(@pbuJson);">Use</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr class="active">
+                                <td colspan="5">
+                                    <div class="text-right">
+                                        <ul class="pagination pagination-split footable-pagination m-t-10 m-b-0"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,168 @@
+﻿@model Test1.Models.ViewModels.EVouchers.EvoucherViewModel
+@{
+    ViewData["Title"] = "Evouchers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var actionName = Model.BtnActionName.ToLower().Trim();
+
+}
+
+<div class="row">
+    <div class="col-3 p-2 my-2 bg-light">
+        <div class="card-box">
+            <form asp-action="EvoucherAIO" method="post">
+                @*<a class="nav-link text-dark" asp-area="EHome" asp-controller="EHome" asp-action="EHomeIndex">EHome</a>*@
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @if (Model.BtnActionName != "Create")
+                {
+                    <input type="hidden" asp-for="EvoucherId" />
+                }
+                <input type="hidden" asp-for="BtnActionName" />
+                <div class="form-group">
+                    <label asp-for="Evoucher.EvoucherTitle" class="control-label"></label>
+                    <input asp-for="Evoucher.EvoucherTitle" class="form-control input-sm" />
+                    <span asp-validation-for="Evoucher.EvoucherTitle" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Evoucher.EvoucherDescription" class="control-label"></label>
+                    <input asp-for="Evoucher.EvoucherDescription" class="form-control input-sm" />
+                    <span asp-validation-for="Evoucher.EvoucherDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Evoucher.ExpireDate" class="control-label"></label>
+                    <input asp-for="Evoucher.ExpireDate" class="form-control input-sm" />
+                    <span asp-validation-for="Evoucher.ExpireDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Evoucher.Image" class="control-label"></label>
+                    <input asp-for="Evoucher.Image" class="form-control input-sm" />
+                    <span asp-validation-for="Evoucher.Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Evoucher.Amount" class="control-label"></label>
+                    <input asp-for="Evoucher.Amount" class="form-control input-sm" />
+                    <span asp-validation-for="Evoucher.Amount" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @if (actionName == "edit")
+                    {
+                        <button type="submit" name="btnSubmit" value="Edit" class="btn btn-success">Update</button>
+                    }
+                    else if (actionName == "delete")
+                    {
+                        <button type="submit" name="btnSubmit" value="Delete" class="btn btn-danger">Delete</button>
+                    }
+                    else
+                    {
+                        <button type="submit" name="btnSubmit" value="Create" class="btn btn-success">Save</button>
+                    }
+                    <a asp-action="EvoucherAIO" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-9 p-2 my-2 bg-light">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-box">
+                    <div class="form-inline m-b-20">
+                        <div class="row" style=" width: 48rem;">
+                            <div class="col-md-6 text-xs-center" style="display:none;">
+                                <div class="form-group">
+                                    <label class="control-label m-r-5">Status</label>
+                                    <select id="demo-foo-filter-status" class="form-control input-sm">
+                                        <option value="">Show all</option>
+                                        <option value="active">Active</option>
+                                        <option value="disabled">Disabled</option>
+                                        <option value="suspended">Suspended</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center ">
+                                <div class="form-group ">
+                                    <input id="demo-foo-search" type="text" placeholder="Search" class="form-control input-sm col-10" autocomplete="on">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="demo-foo-filtering" class="table table-striped table-bordered toggle-circle m-b-0" data-page-size="7">
+                        <thead>
+                            <tr>
+                                <th>
+                                    No.
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EvoucherTitle)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EvoucherDescription)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ExpireDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </th>
+                                <th class="text-center"><b>Action</b></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @for (int i = 0; i < Model.EvoucherList.Count(); i++)
+                            {
+                                var item = Model.EvoucherList;
+                                <input type="hidden" asp-for="Evoucher.EvoucherId" />
+                                <tr>
+                                    <td>
+                                        @(i + 1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item[i].EvoucherTitle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item[i].EvoucherDescription)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item[i].ExpireDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item[i].Amount)
+                                    </td>
+
+
+                                    <td class="text-center">
+                                        <a class="btn btn-outline-primary" asp-route-btnActionName="Edit" asp-action="EvoucherAIO" asp-route-EvoucherId="@item[i].EvoucherId">Edit</a>
+                                        <a class="btn btn-outline-danger" asp-route-btnActionName="Delete" asp-action="EvoucherAIO" asp-route-EvoucherId="@item[i].EvoucherId">Delete</a>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr class="active">
+                                <td colspan="5">
+                                    <div class="text-right">
+                                        <ul class="pagination pagination-split footable-pagination m-t-10 m-b-0"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/plugins/waypoints/jquery.waypoints.min.js"></script>
+<script src="~/plugins/counterup/jquery.counterup.min.js"></script>
+
+
+<!--FooTable-->
+<script src="~/plugins/footable/js/footable.all.min.js"></script>
+
+<!--FooTable Example-->
+<script src="~/pages/jquery.footable.js"></script>

@@ -1,0 +1,208 @@
+﻿@model Test1.Models.ViewModels.EHomeViewModel
+@{
+    ViewData["Title"] = "Purchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var actionName = Model.BtnActionName.ToLower().Trim();
+
+}
+
+<div class="row">
+    <div class="col-6 p-2 my-2 bg-light">
+        <div class="card-box">
+            @*<form asp-action="EHomePurchase" style="margin-left:1rem">*@
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="@Model.Evoucher.EvoucherId" />
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="control-label">E-Voucher Detail </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Title </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="input-sm form-control"> @Model.Evoucher.EvoucherTitle</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Description </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="input-sm form-control"> @Model.Evoucher.EvoucherDescription</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Expire Date </label>
+                    </div>
+                    <div class="col-6">
+                        <label class="input-sm form-control"> @Model.Evoucher.ExpireDate</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">Amount </label>
+                    </div>
+                    <div class="col-6">
+                        <input type="hidden" asp-for="@Model.Evoucher.Amount" id="vcAmount" class="resetInputValue" />
+                        <label class="input-sm form-control"> @Model.Evoucher.Amount</label>
+                    </div>
+                </div>
+            @*</form>*@
+        </div>
+    </div>
+    <div class=" col-6 p-2 my-2 bg-light">
+        <div class="col-12">
+            <div class="card-box">
+                <form asp-action="EHomePurchase" method="post">
+                    <input type="hidden" asp-for="EvoucherId" />
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="control-label">Buyer Info </h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Buyer.Name" class="control-label"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Buyer.Name" class="form-control input-sm resetInputValue" />
+                                <span asp-validation-for="Buyer.Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Buyer.PhoneNo" class="control-label"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Buyer.PhoneNo" class="form-control input-sm resetInputValue" />
+                                <span asp-validation-for="Buyer.PhoneNo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label asp-for="Buyer.MaxNo" class="control-label"></label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Buyer.MaxNo" class="form-control MaxNo input-sm BuyerPhoneNo" />
+                                <span asp-validation-for="Buyer.MaxNo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-left:10rem">
+                            <div class="col-4">
+                                <input type="hidden" asp-for="PaymentList[0].Discount" id="VisaDisc" />
+                                <input class="form-check-input" name="flexRadioDefault" id="flexRadioDefault1" style="padding-left:2rem" type="radio" checked>
+                                <label class="form-check-label" asp-for="Payment.PaymentId">
+                                    @Model.PaymentList[0].PaymentType
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <input type="hidden" asp-for="PaymentList[1].Discount" id="WaveDisc" />
+                                <input class="form-check-input " name="flexRadioDefault" id="flexRadioDefault2" type="radio">
+                                <label class="form-check-label " asp-for="Payment.PaymentId">
+                                    @Model.PaymentList[1].PaymentType
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label">Total Cost:</label>
+                            </div>
+                            <div class="col-8">
+                                <input type="hidden" asp-for="TotalCost" />
+                                <input id="amount" class="form-control totalcost input-sm resetInputValue" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left:10rem">
+                            <div class="col-4">
+                                <input class="form-check-input resetInputValue" name="sh" id="Buy" style="padding-left:2rem" type="radio">
+                                <label class="form-check-label desc">
+                                    Buy
+                                </label>
+                            </div>
+                            <div class="col-4">
+                                <input class="form-check-input resetInputValue" name="sh" id="Gift" type="radio" checked>
+                                <label class="form-check-label desc">
+                                    Gift
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="GiftForm">
+                            <div class="col-4">
+                                <label class="control-label">PhoneNo(Reciver)</label>
+                            </div>
+                            <div class="col-8">
+                                <input asp-for="Buyer.PhoneNo" class="form-control input-sm resetInputValue ReceiverPhoneNo" />
+                                <span asp-validation-for="Buyer.PhoneNo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" id="Buy" name="btnSubmit" value="Create" class="btn btn-success">Buy</button>
+                            <a asp-action="EHomeIndex" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[id$='Buy']").click(function () {
+                $("#GiftForm").hide();
+            });
+            $("input[id$='Gift']").click(function () {
+                $("#GiftForm").show();
+            });
+            $("input[id$='flexRadioDefault1']").click(function () {
+                var vcAmount = $('#vcAmount').val();
+                var VisaDisc = $('#VisaDisc').val();
+                var MaxNo = $('.MaxNo').val();
+                var FinalDisc = (Number(VisaDisc) / 100);
+                var totalcostwd = (Number(vcAmount) * Number(MaxNo));
+                var totalcost = Number(totalcostwd) * Number(FinalDisc);
+                $('.totalcost').val(totalcost);
+            });
+            $("input[id$='flexRadioDefault2']").click(function () {
+                var vcAmount = $('#vcAmount').val();
+                var WaveDisc = $('#VisaDisc').val();
+                var MaxNo = $('.MaxNo').val();
+                var FinalDisc = (Number(WaveDisc) / 100);
+                var totalcostwd = (Number(vcAmount) * Number(MaxNo));
+                var totalcost = Number(totalcostwd) * Number(FinalDisc);
+                $('.totalcost').val(totalcost);
+            });
+            $('#Buy').click(function () {
+                var vcAmount = $('#vcAmount').val();
+                var WaveDisc = $('#VisaDisc').val();
+                var MaxNo = $('.MaxNo').val();
+                var FinalDisc = (Number(WaveDisc) / 100);
+                var totalcostwd = (Number(vcAmount) * Number(MaxNo));
+                var totalcost = Number(totalcostwd) * Number(FinalDisc);
+                alert(val);
+                $.ajax({
+                    url: 'EHome/EHome/EHomePurchase',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: { 'totalcost': totalcost },
+                    dataType: 'json'
+                })
+                    .success(function (result) {
+                       alert(totalcost)
+                    })
+                    .error(function (xhr, status) {
+                        alert(status);
+                    });
+            })
+        });
+    </script>
+
+}

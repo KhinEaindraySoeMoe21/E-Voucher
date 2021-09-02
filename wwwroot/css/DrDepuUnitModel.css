@@ -1,0 +1,90 @@
+﻿
+
+.selectRow {
+    /*background-color: #dee2e6;
+    color: forestgreen;*/
+    background-color: cadetblue;
+    color: white;
+    /*background-color:black;*/
+    /*color: #0026ff;*/
+}
+
+table#tblDoctor tbody tr.TrDataLoop:hover {
+    background-color: #dee2e6;
+    color: forestgreen;
+}
+
+.modal-dialog {
+    min-width: 700px;
+}
+
+.modal-header {
+    display: table-row;
+}
+
+#tblDoctor tbody tr:hover {
+    cursor: pointer;
+}
+
+table#tblDoctor {
+    min-width: 30rem;
+}
+
+    table#tblDoctor td {
+        padding: 5px;
+    }
+
+    table#tblDoctor thead th {
+        background-color: #ff006e;
+        color: white;
+        position: sticky;
+        top: 0;
+    }
+
+.modal-body {
+    padding: 0 1rem;
+    flex: none;
+}
+
+#modelTable {
+    max-height: 35rem;
+    /*height:100px;*/
+    overflow: scroll;
+    -ms-overflow-style: none;
+}
+
+    #modelTable::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+#btnTable {
+    position: sticky;
+    bottom: 0;
+}
+
+.HideElement {
+    display: none;
+}
+
+#ddlGroupBy {
+    display: none;
+}
+
+.cursor_pointer {
+    cursor: pointer;
+}
+
+.GroupByNameHeader {
+    border: 1px solid black;
+    width: 25px;
+    display: inline-block;
+    text-align: center;
+    background-color: gray;
+    border-radius: 50%;
+    color: white;
+    vertical-align: middle;
+    font-weight: 700;
+    padding-top: 1px;
+    height: 25px;
+}
